@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pytesseract
+easyocr
+pdf2image
+Pillow
+sentence-transformers
+faiss-cpu
+numpy
+python-multipart
+sqlalchemy
+wordfreq
+PyPDF2

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Test</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .chat-panel { width: 700px; border: 2px solid #667eea; background: white; }
+    .chat-header { background: #667eea; color: white; padding: 15px; }
+    .chat-messages { height: 400px; overflow-y: auto; padding: 20px; background: #fafbfc; }
+    .chat-message { padding: 12px; margin: 10px 0; border-radius: 8px; }
+    .chat-message.user { background: #667eea; color: white; text-align: right; }
+    .chat-message.avatar { background: #e8f0ff; color: #333; border-left: 5px solid #667eea; }
+  </style>
+</head>
+<body>
+  <h1>Chat Display Test</h1>
+  
+  <div class="chat-panel">
+    <div class="chat-header">🤖 Ask JARVIS</div>
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages will be added here -->
+    </div>
+  </div>
+  
+  <button onclick="testMessage()">Add Test Message</button>
+  <button onclick="testApiResponse()">Test with API Response</button>
+  
+  <script>
+    function addMessage(text, isUser) {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = isUser ? 'chat-message user' : 'chat-message avatar';
+      
+      if (isUser) {
+        div.textContent = text;
+      } else {
+        div.innerHTML = formatChatMessage(text);
+      }
+      
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+    
+    function formatChatMessage(text) {
+      let formatted = text;
+      formatted = formatted.replace(/\n\n/g, '|||PARAGRAPH|||');
+      formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      formatted = formatted.replace(/\n/g, '<br>');
+      formatted = formatted.replace(/\|\|\|PARAGRAPH\|\|\|/g, '<br><br>');
+      formatted = formatted.replace(/^• /gm, '<br>• ');
+      formatted = formatted.replace(/^- /gm, '<br>• ');
+      formatted = formatted.replace(/<br><br>^/, '');
+      return formatted;
+    }
+    
+    function testMessage() {
+      addMessage("Hello! How are you?", true);
+      setTimeout(() => {
+        addMessage("I'm doing great! 🚀 What would you like to know?", false);
+      }, 500);
+    }
+    
+    async function testApiResponse() {
+      addMessage("When are exams?", true);
+      
+      try {
+        const response = await fetch('http://127.0.0.1:8000/chat?query=when%20are%20exams');
+        const data = await response.json();
+        addMessage(data.response, false);
+        
+        if (data.suggestions) {
+          setTimeout(() => {
+            addMessage(`💡 **Suggested searches:** ${data.suggestions.join(" • ")}`, false);
+          }, 500);
+        }
+      } catch (e) {
+        addMessage(`Error: ${e.message}`, false);
+      }
+    }
+    
+    // Show initial welcome message
+    window.addEventListener('load', () => {
+      addMessage('👋 Welcome to Chat Test!', false);
+      setTimeout(() => {
+        addMessage('Click buttons below to test message display.', false);
+      }, 300);
+    });
+  </script>
+</body>
+</html>

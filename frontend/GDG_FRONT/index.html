@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore | Peak Performers</title>
+    <!-- Modern Font: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Video Background -->
+    <div class="video-container">
+        <!-- Added playsinline and webkit-playsinline for broader compatibility -->
+        <video autoplay muted loop playsinline webkit-playsinline id="bg-video">
+            <source src="background.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Content -->
+    <main class="content">
+        <div class="hero">
+            <h1 class="animate-text">PEAK <span class="highlight">PERFORMERS</span></h1>
+            <button class="explore-btn animate-text-delay-2" onclick="exploreClick()">Explore Now</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

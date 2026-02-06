@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Archaeology</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>📜 DIGITAL ARCHAEOLOGY</h1>
+    <p>Smart search for university notices & documents</p>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+
+    <!-- Upload -->
+    <section class="card">
+      <h2>Upload Document</h2>
+      <input type="file" id="fileInput">
+      <button onclick="uploadFile()">Upload & Index</button>
+      <p id="uploadStatus" class="status"></p>
+    </section>
+
+    <!-- Search -->
+    <section class="card">
+      <h2>Search Notices</h2>
+      <div class="search-box">
+        <input type="text" id="query" placeholder="e.g. Enter what you want to search">
+        <button onclick="searchText()">Search</button>
+      </div>
+      <label style="display:block;margin-top:8px;"><input type="checkbox" id="showRaw"> Show raw OCR text</label>
+    </section>
+
+    <!-- Results -->
+    <section class="results">
+      <h2>Results</h2>
+      <div id="results"></div>
+      <h3 style="margin-top:12px">Related Documents</h3>
+      <div id="related"></div>
+      <h3 style="margin-top:12px">Notifications</h3>
+      <div id="notifications" class="notifications"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    Peak Performers • Semantic Search Engine
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
